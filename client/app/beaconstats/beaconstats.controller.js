@@ -3,25 +3,29 @@
 angular.module('bobApp')
   .controller('BeaconstatsCtrl', function ($scope) {
     $scope.message = 'Hello';
+   	
    	$scope.labelsLine = ["January", "February", "March", "April", "May", "June", "July"];
-	  $scope.seriesLine = ['UCSC', 'Beacon2'];
-	  $scope.dataLine = [
-	    [65, 59, 80, 81, 56, 55, 40],
-	    [28, 48, 40, 19, 86, 27, 90]
-	  ];
+	  // $scope.seriesLine = ['UCSC', 'Beacon2', 'AMP', 'NCBI'];
+	  // $scope.dataLine = [
+	  //   [65, 59, 80, 81, 56, 55, 40],
+	  //   [88, 43, 50, 13, 66, 27, 90],
+	  //   [38, 45, 80, 39, 36, 28, 20],
+	  //   [18, 34, 90, 9, 82, 37, 30]
+	  // ];
 	  $scope.onClick = function (points, evt) {
 	    console.log(points, evt);
 	  };
+
 	  $scope.labelsPie = ["UCSC", "Beacon2", "NCBI"];
   	$scope.dataPie = [300, 500, 100];
 
   	$scope.beacons = [ {
       "name":"AMP", 
-      "checked":false
+      "checked":true
       },
       {
       "name":"Beacon4", 
-      "checked":false
+      "checked":true
       },
       {
       "name":"UCSC", 
@@ -30,46 +34,97 @@ angular.module('bobApp')
       {
       "name":"NCBI", 
       "checked":false
-      }];
+    }];
 
-      $scope.modelLabels = function(checkModel) {
-      if(checkModel != true) return "Off";
-      else return "On";
-    	}
+    $scope.modelLabels = function(checkModel) {
+    if(checkModel != true) return "Off";
+    else return "On";
+  	}
 
-    	//datepicker functions
-    	$scope.today = function() {
-	    $scope.dt = new Date();
-		  };
-		  $scope.today();
+  	//datepicker functions
+  	$scope.today = function() {
+    $scope.dt = new Date();
+	  };
+	  $scope.today();
 
-		  $scope.clear = function () {
-		    $scope.dt = null;
-		  };
+	  $scope.clear = function () {
+	    $scope.dt = null;
+	  };
 
-		  // Disable weekend selection
-		  $scope.disabled = function(date, mode) {
-		    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-		  };
+	  // Disable weekend selection
+	  $scope.disabled = function(date, mode) {
+	    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	  };
 
-		  $scope.toggleMin = function() {
-		    $scope.minDate = $scope.minDate ? null : new Date();
-		  };
-		  $scope.toggleMin();
+	  $scope.toggleMin = function() {
+	    $scope.minDate = $scope.minDate ? null : new Date();
+	  };
+	  $scope.toggleMin();
 
-		  $scope.open = function($event) {
-		    $event.preventDefault();
-		    $event.stopPropagation();
+	  $scope.open = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
 
-		    $scope.opened = true;
-		  };
+	    $scope.opened = true;
+	  };
 
-		  $scope.dateOptions = {
-		    formatYear: 'yy',
-		    startingDay: 1
-		  };
+	  $scope.dateOptions = {
+	    formatYear: 'yy',
+	    startingDay: 1
+	  };
 
-		  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-		  $scope.format = $scope.formats[0];
+	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	  $scope.format = $scope.formats[0];
+
+	  $scope.$watch('filter', function(newVal, oldVal) {
+	  	// if(typeof(newVal) != "undefined" && typeof(oldVal)!= "undefined") {
+	  	// 	filterChanged(newVal, oldVal);
+	  	// }
+	  }, true);
+
+	  $scope.$watch('beacons', function(newVal, oldVal) {
+	  	filterChanged(newVal, oldVal);
+	  }, true);
+
+		function filterChanged(newVal, oldVal) {
+			console.log(newVal);
+	  	console.log(oldVal);
+	  	var tempSeriesLine = [];
+	  	var tempDataLine = [];
+
+  		for(var i=0;i<newVal.length;i++){
+  			if(newVal[i].checked == true) {
+  				tempSeriesLine.push(newVal[i].name);
+  			}
+  		} 
+			$scope.seriesLine = tempSeriesLine;	  	
+	  	
+	  	//generate random data
+	  	for(var i =0;i<tempSeriesLine.length;i++) {
+	  		var row = [];
+				for(var j=0;j<7;j++) {
+					row.push(Math.floor(Math.random() * 100 + 1));
+				}
+				tempDataLine.push(row);
+	  	}
+	  	// console.log(tempDataLine);
+	  	$scope.dataLine = tempDataLine;
+	  	console.log($scope.seriesLine);
+	  	console.log($scope.dataLine);
+	  	//handling the pie chart
+	  	$scope.labelsPie = tempDataLine;
+	  	$scope.dataPie = [];
+	  	for(var j=0;j<tempDataLine.length;j++) {
+				$scope.dataPie.push(Math.floor(Math.random() * 100 + 1));
+			}
+			console.log($scope.dataPie);
+		}
+	  $scope.test = function() {
+	  	console.log("test");
+	  	$scope.seriesLine = ['UCSC'];
+	  	$scope.dataLine = [
+	    	[65, 59, 80, 81, 56, 55, 40]
+	  	];
+	  }
 
   });
