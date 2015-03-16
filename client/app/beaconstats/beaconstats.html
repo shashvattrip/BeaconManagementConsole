@@ -1,0 +1,53 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<!-- <header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Beacon Stats</h1>
+  </div>
+</header> -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li>Overview</li>
+				<li>Overview</li>
+				<li>Overview</li>
+			</ul>
+		</div>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+		    <div class="col-md-6">
+		    	<h1>Trending Beacons</h1>
+			    <canvas id="line" class="chart chart-line" data="dataLine" labels="labelsLine" legend="true" series="seriesLine" click="onClick">
+				</canvas> 
+		    </div>
+		    <div class="col-md-6">
+		    	<h1>Trending Queries</h1>
+			    <canvas id="pie" class="chart chart-pie" data="dataPie" labels="labelsPie"></canvas> 
+		    </div>
+		  </div>
+		  
+		  <div class="row">
+		    <div class="col-md-6">
+		    	<h1>Trending Beacons</h1>
+			    <canvas id="line" class="chart chart-line" data="dataLine" labels="labelsLine" legend="true" series="seriesLine" click="onClick">
+				</canvas> 
+		    </div>
+		    <div class="col-md-6">
+		    	<h1>Trending Queries</h1>
+			    <canvas id="pie" class="chart chart-pie" data="dataPie" labels="labelsPie"></canvas> 
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>shashvattrip-BOB v1.0 |
+        <a href="https://twitter.com/TrippinShash">@TrippinShash</a> |
+         <a href="https://github.com/shashvattrip" target="_blank">Github</a></p>
+  </div>
+</footer>
+

@@ -4,7 +4,23 @@ angular.module('bobApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
+      'link': '/',
+      'requireAuth': 'false'
+    }, 
+    {
+      'title': 'Saved Queries', 
+      'link': '/queries',
+      'requireAuth': 'true'
+    },
+    {
+      'title': 'Favorite Beacons',
+      'link': '/favbeacons',
+      'requireAuth': 'true'
+    }, 
+    {
+      'title': 'Beacon Stats', 
+      'link': '/beaconstats',
+      'requireAuth': 'true'
     }];
 
     $scope.isCollapsed = true;
