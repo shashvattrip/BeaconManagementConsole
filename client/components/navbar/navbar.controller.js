@@ -10,17 +10,17 @@ angular.module('bobApp')
     {
       'title': 'Saved Queries', 
       'link': '/queries',
-      'requireAuth': 'true'
+      'requireAuth': 'false'
     },
     {
       'title': 'Favorite Beacons',
       'link': '/favbeacons',
-      'requireAuth': 'true'
+      'requireAuth': 'false'
     }, 
     {
       'title': 'Beacon Stats', 
       'link': '/beaconstats',
-      'requireAuth': 'true'
+      'requireAuth': 'false'
     }];
 
     $scope.isCollapsed = true;
