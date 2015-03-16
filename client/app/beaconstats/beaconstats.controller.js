@@ -77,9 +77,22 @@ angular.module('bobApp')
 	  $scope.format = $scope.formats[0];
 
 	  $scope.$watch('filter', function(newVal, oldVal) {
-	  	// if(typeof(newVal) != "undefined" && typeof(oldVal)!= "undefined") {
-	  	// 	filterChanged(newVal, oldVal);
-	  	// }
+	  	//generate random data
+	  	var tempDataLine = [];
+	  	for(var i =0;i<$scope.seriesLine.length;i++) {
+	  		var row = [];
+				for(var j=0;j<7;j++) {
+					row.push(Math.floor(Math.random() * 100 + 1));
+				}
+				tempDataLine.push(row);
+	  	}
+	  	$scope.dataLine = tempDataLine;
+	  	//handling the pie chart
+	  	$scope.labelsPie = tempDataLine;
+	  	$scope.dataPie = [];
+	  	for(var j=0;j<tempDataLine.length;j++) {
+				$scope.dataPie.push(Math.floor(Math.random() * 100 + 1));
+			}
 	  }, true);
 
 	  $scope.$watch('beacons', function(newVal, oldVal) {
@@ -87,8 +100,6 @@ angular.module('bobApp')
 	  }, true);
 
 		function filterChanged(newVal, oldVal) {
-			console.log(newVal);
-	  	console.log(oldVal);
 	  	var tempSeriesLine = [];
 	  	var tempDataLine = [];
 
@@ -98,7 +109,6 @@ angular.module('bobApp')
   			}
   		} 
 			$scope.seriesLine = tempSeriesLine;	  	
-	  	
 	  	//generate random data
 	  	for(var i =0;i<tempSeriesLine.length;i++) {
 	  		var row = [];
@@ -107,24 +117,16 @@ angular.module('bobApp')
 				}
 				tempDataLine.push(row);
 	  	}
-	  	// console.log(tempDataLine);
 	  	$scope.dataLine = tempDataLine;
-	  	console.log($scope.seriesLine);
-	  	console.log($scope.dataLine);
 	  	//handling the pie chart
-	  	$scope.labelsPie = tempDataLine;
+	  	$scope.labelsPie = tempSeriesLine;
 	  	$scope.dataPie = [];
-	  	for(var j=0;j<tempDataLine.length;j++) {
+	  	for(var j=0;j<tempSeriesLine.length;j++) {
 				$scope.dataPie.push(Math.floor(Math.random() * 100 + 1));
 			}
-			console.log($scope.dataPie);
 		}
 	  $scope.test = function() {
 	  	console.log("test");
-	  	$scope.seriesLine = ['UCSC'];
-	  	$scope.dataLine = [
-	    	[65, 59, 80, 81, 56, 55, 40]
-	  	];
 	  }
 
   });
