@@ -6,38 +6,21 @@ angular.module('bobApp')
     $scope.showProgressBar = false;
     $scope.showResults = false;
     $scope.max = 100;
-    $scope.results = [{
-      exist_gt: true,
-      exist_sra: true,
-      query: {
-        sender:'UCSC',
-        allele: "C",
-        chrom: "912",
-        pos: "1362542908",
-        ref: "GRCh11"
-        }
-      }, 
-      {
-      exist_gt: false,
-      exist_sra: true,
-      query: {
-        sender:'AMP',
-        allele: "A",
-        chrom: "95",
-        pos: "1361908",
-        ref: "GRCh78"
-        }
+    $scope.beacons = [ {
+      "name":"AMP", 
+      "checked":false
       },
       {
-      exist_gt: false,
-      exist_sra: false,
-      query: {
-        sender:'NCBI',
-        allele: "G",
-        chrom: "92",
-        pos: "176122908",
-        ref: "GRCh55"
-        }
+      "name":"Beacon4", 
+      "checked":false
+      },
+      {
+      "name":"UCSC", 
+      "checked":false
+      },
+      {
+      "name":"NCBI", 
+      "checked":false
       }];
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
@@ -57,27 +40,30 @@ angular.module('bobApp')
 
 
     $scope.alerts = [
-    // { type: 'danger', msg: 'Please select a beacon to query' },
-    // { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+    // { type: 'danger', msg: 'Please select a beacon to query' }
   ];
 
     $scope.checkErrors = function() {
       //check for errors
-      console.log($scope.checkModel);
-      if(typeof($scope.checkModel) == "undefined") {
+      var flag = false;
+      for(var i = 0; i<$scope.beacons.length; i++) {
+        if($scope.beacons[i].checked == true) flag = true;
+      }
+      if(flag == false) {
         //User hasnt selected Beacons to query
+        $scope.alerts = [];
         $scope.alerts.push({msg: 'Please select a beacon to query', type: 'danger'});
+        return;
       } else {
         //API calls to query these beacons
         $scope.alerts = [];
-        $scope.alerts.push({msg: 'Beacons have been queried', type: 'success'});
+        $scope.alerts.push({msg: 'Please enter configs for the following beacons', type: 'success'});
         // $scope.random();
         $scope.dynamic = 0;
-        $scope.showProgressBar = true;
-        $timeout(function() {
-          $scope.dynamic = 100;
-          $scope.showResults = true;
-        }, 1000);      
+        // $scope.showProgressBar = true;
+        // $scope.dynamic = 100;
+        $scope.showResults = true;
+        
       }
     }
 
@@ -86,8 +72,17 @@ angular.module('bobApp')
     };
 
     
+    $scope.modelLabels = function(checkModel) {
+      if(checkModel != true) return "Off";
+      else return "On";
+    }
 
-    
-    
+    $scope.test = function() {
+      console.log($scope.beacons);
+    }
 
+    $scope.$watch('beacons', function(newVal, oldVal) {
+      console.log(newVal);
+      $scope.checkErrors();
+    }, true);
   });

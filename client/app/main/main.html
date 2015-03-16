@@ -2,37 +2,51 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <!-- <h1>'Allo, 'Allo!</h1> -->
     <p class="lead">What beacons do you want to query?</p>
-    <!-- <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
-    <!-- <pre>{{checkModel}}</pre> -->
-    <div class="btn-group">
-        <label class="btn btn-success" ng-model="checkModel.amp" btn-checkbox>AMP Lab</label>
-        <label class="btn btn-success" ng-model="checkModel.ncbi" btn-checkbox>NCBI Beacon</label>
-        <label class="btn btn-success" ng-model="checkModel.ucsc" btn-checkbox>UCSS Beacon</label>
-        <label class="btn btn-success" ng-model="checkModel.beacon4" btn-checkbox>Beacon4</label>
-        <br/>
-        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-        <button class='btn btn-default' ng-click="checkErrors()">Go!</button>
-
+    <button ng-click="test()">Test button</button>
+    <div class="row" ng-repeat="beacon in beacons">
+      <div class="col-md-3 col-md-offset-3">
+        <label>{{beacon.name}}</label>
+      </div>
+      <div class="col-md-1">
+        <label class="btn btn-success" ng-model="beacon.checked" btn-checkbox>{{modelLabels(beacon.checked)}}</label>
+      </div>
     </div>
+    <br/>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
   </div>
 </header>
-<div class="container" ng-show="showProgressBar">
+<!-- <div class="container" ng-show="showProgressBar">
   <progressbar animate="true" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
-</div>
+</div> -->
 <div class="container" ng-show="showResults">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Results:</h1>
-        <ul>
-          <li ng-repeat='result in results'>exist_gt : {{result.exist_gt}}, exist_src : {{result.exist_sra}} : from {{result.query.sender}}</li>
-        </ul>
-      <!-- <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul> -->
+      <h1 class="page-header">Configs:</h1>
+      <a href="/results"><button type="button" class='btn btn-success btn-lg btn-block'>Go!</button></a>
+      <br/>
+      <ul class="nav nav-tabs nav-stacked col-md-3 col-lg-4 col-sm-6" ng-repeat="beacon in beacons | filter:{checked: 'true'}">
+        <li><strong>{{beacon.name}}</strong></li>
+        <li>Allele 
+         <input type="text" class="form-control" id="" placeholder="Enter Allele">
+        </li>
+        <li>Chromosome 
+         <input type="text" class="form-control" id="" placeholder="Enter Chromosome">
+        </li>
+        <li>Reference 
+         <input type="text" class="form-control" id="" placeholder="Enter Reference">
+        </li>
+        <li>Position 
+         <input type="text" class="form-control" id="" placeholder="Enter Position">
+        </li>
+      </ul>
     </div>
   </div>
+  <!-- <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="button" class='btn btn-success btn-lg btn-block'>Go!</button>
+    </div>
+  </div> -->
 </div>
 
 <footer class="footer">
