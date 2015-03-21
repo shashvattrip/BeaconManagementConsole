@@ -52,12 +52,12 @@ angular.module('bobApp')
       if(flag == false) {
         //User hasnt selected Beacons to query
         $scope.alerts = [];
-        $scope.alerts.push({msg: 'Please select a beacon to query', type: 'danger'});
+        $scope.alerts.push({msg: 'HOME_ERROR_SELECT_BEACON', type: 'danger'});
         return;
       } else {
         //API calls to query these beacons
         $scope.alerts = [];
-        $scope.alerts.push({msg: 'Please enter configs for the following beacons', type: 'success'});
+        $scope.alerts.push({msg: 'HOME_ENTER_BEACON_CONFIG', type: 'success'});
         // $scope.random();
         $scope.dynamic = 0;
         // $scope.showProgressBar = true;

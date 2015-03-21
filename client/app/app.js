@@ -6,15 +6,43 @@ angular.module('bobApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'chart.js'
+  'chart.js',
+  'pascalprecht.translate'
 ])
-  .config(function ($routeProvider, $locationProvider, $httpProvider) {
+  .config(function ($routeProvider, $locationProvider, $httpProvider, $translateProvider) {
     $routeProvider
       .otherwise({
         redirectTo: '/'
       });
 
     $locationProvider.html5Mode(true);
+
+    $translateProvider.translations('en', {
+      'HELLO_WORLD':"Hello, World",
+      'WHAT_BEACONS_DO_YOU_WANT_TO_QUERY':"What beacons do you want to query?",
+      'NAVBAR_HOME':'Home',
+      'NAVBAR_SAVED_QUERIES':'Saved Queries',
+      'NAVBAR_FAV_BEACONS':'Favorite Beacons',
+      'NAVBAR_BEACON_STATISTICS':'Beacon Statistics',
+      'NAVBAR_LOGIN':'Login',
+      'HOME_ERROR_SELECT_BEACON':'Please select a beacon to query',
+      'HOME_BTN_GO':'Go!',
+      'HOME_ENTER_BEACON_CONFIG':'Please enter configs for the following beacons'
+
+    })
+    .translations('de', {
+      'HELLO_WORLD': 'hallo welt',
+      'WHAT_BEACONS_DO_YOU_WANT_TO_QUERY':'Welche Baken möchten Sie abfragen?',
+      'NAVBAR_HOME':'Nach Hause',
+      'NAVBAR_SAVED_QUERIES':'Gespeicherte Abfragen',
+      'NAVBAR_FAV_BEACONS':'Lieblings Beacons',
+      'NAVBAR_BEACON_STATISTICS':'Beacon Statistik',
+      'NAVBAR_LOGIN':'Einloggen',
+      'HOME_ERROR_SELECT_BEACON':'Bitte wählen Sie ein Leuchtfeuer abfragen',
+      'HOME_BTN_GO':'gehen!',
+      'HOME_ENTER_BEACON_CONFIG':'Bitte geben Sie Konfigurationen für die folgenden Beacons'
+    });
+    $translateProvider.preferredLanguage('de');
     $httpProvider.interceptors.push('authInterceptor');
   })
 

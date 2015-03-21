@@ -1,24 +1,24 @@
 'use strict';
 
 angular.module('bobApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $translate) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'NAVBAR_HOME',
       'link': '/',
       'requireAuth': 'false'
     }, 
     {
-      'title': 'Saved Queries', 
+      'title': 'NAVBAR_SAVED_QUERIES', 
       'link': '/queries',
       'requireAuth': 'false'
     },
     {
-      'title': 'Favorite Beacons',
+      'title': 'NAVBAR_FAV_BEACONS',
       'link': '/favbeacons',
       'requireAuth': 'false'
     }, 
     {
-      'title': 'Beacon Stats', 
+      'title': 'NAVBAR_BEACON_STATISTICS', 
       'link': '/beaconstats',
       'requireAuth': 'false'
     }];
@@ -36,4 +36,10 @@ angular.module('bobApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.changeLanguage = function(langKey) {
+      $translate.use(langKey);
+    }
+
+
   });

@@ -2,7 +2,7 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <p class="lead">What beacons do you want to query?</p>
+    <p class="lead">{{'WHAT_BEACONS_DO_YOU_WANT_TO_QUERY' | translate}}</p>
     <!-- <button ng-click="test()">Test button</button> -->
     <div class="row" ng-repeat="beacon in beacons">
       <div class="col-md-3 col-md-offset-3">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <br/>
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg | translate}}</alert>
   </div>
 </header>
 <!-- <div class="container" ng-show="showProgressBar">
@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Configs:</h1>
-      <a href="/results"><button type="button" class='btn btn-success btn-lg btn-block'>Go!</button></a>
+      <a href="/results"><button type="button" class='btn btn-success btn-lg btn-block' translate='HOME_BTN_GO'></button></a>
       <br/>
       <ul class="nav nav-tabs nav-stacked col-md-3 col-lg-4 col-sm-6" ng-repeat="beacon in beacons | filter:{checked: 'true'}">
         <li><strong>{{beacon.name}}</strong></li>

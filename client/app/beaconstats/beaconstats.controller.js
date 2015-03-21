@@ -79,6 +79,7 @@ angular.module('bobApp')
 	  $scope.$watch('filter', function(newVal, oldVal) {
 	  	//generate random data
 	  	var tempDataLine = [];
+	  	if(typeof $scope.seriesLine == "undefined") return;
 	  	for(var i =0;i<$scope.seriesLine.length;i++) {
 	  		var row = [];
 				for(var j=0;j<7;j++) {
