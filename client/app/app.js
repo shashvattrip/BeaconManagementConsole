@@ -42,7 +42,7 @@ angular.module('bobApp', [
       'HOME_BTN_GO':'gehen!',
       'HOME_ENTER_BEACON_CONFIG':'Bitte geben Sie Konfigurationen für die folgenden Beacons'
     });
-    $translateProvider.preferredLanguage('de');
+    $translateProvider.preferredLanguage('en');
     $httpProvider.interceptors.push('authInterceptor');
   })
 
