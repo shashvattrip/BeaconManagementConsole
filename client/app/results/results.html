@@ -14,10 +14,10 @@
 <div class="container">
 	<div class="row">
     <div class="col-lg-12">
-      <ul class="nav nav-tabs nav-stacked col-md-3 col-lg-4 col-sm-6" ng-repeat="result in results">
-        <li><strong>{{result.query.sender}}</strong></li>
-        <p>Exists GT : {{result.exist_gt}}</p>
-        <p>Exists SRA : {{result.exist_sra}}</p>
+      <ul class="nav nav-tabs nav-stacked col-md-3 col-lg-4 col-sm-6" ng-repeat="beacon in query.beacons">
+        <li><strong>{{beacon.name}}</strong></li>
+        <p>Exists GT : {{randomGenerator()}}</p>
+        <p>Exists SRA : {{randomGenerator()}}</p>
       </ul>
     </div>
   </div>

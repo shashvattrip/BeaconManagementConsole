@@ -37,4 +37,10 @@ angular.module('bobApp')
         }
       }];
       $scope.query = QueryService.callQuery();
+
+      $scope.randomGenerator = function() {
+        var obj = ['Yes', 'No'];
+        if(Math.random() >=0.5) return obj[1]; 
+        else return obj[0];
+      }
   });
