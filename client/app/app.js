@@ -25,7 +25,7 @@ angular.module('bobApp', [
       'NAVBAR_FAV_BEACONS':'Favorite Beacons',
       'NAVBAR_BEACON_STATISTICS':'Beacon Statistics',
       'NAVBAR_LOGIN':'Login',
-      'HOME_ERROR_SELECT_BEACON':'Please select a beacon to query',
+      'HOME_ERROR_SELECT_BEACON':'Please select atleast one beacon to query',
       'HOME_BTN_GO':'Go!',
       'HOME_ENTER_BEACON_CONFIG':'Please enter configs for the following beacons', 
       'NAVBAR_BEACON_REGISTRATION':"Beacon Registration"

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bobApp')
-  .controller('ResultsCtrl', function ($scope) {
+  .controller('ResultsCtrl', function ($scope, QueryService) {
     $scope.message = 'Hello';
     $scope.results = [{
       exist_gt: true,
@@ -36,5 +36,5 @@ angular.module('bobApp')
         ref: "GRCh55"
         }
       }];
-      
+      $scope.query = QueryService.callQuery();
   });

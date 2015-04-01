@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bobApp')
-  .controller('MainCtrl', function ($scope, $http, $timeout, DataService) {
+  .controller('MainCtrl', function ($scope, $http, $timeout, DataService, $location, QueryService) {
     $scope.awesomeThings = [];
     $scope.showProgressBar = false;
     $scope.showResults = false;
@@ -52,6 +52,19 @@ angular.module('bobApp')
 
     $scope.test = function() {
       console.log($scope.beacons);
+    }
+
+    $scope.redirectTo = function() {
+      //check if all input have been met
+      if(typeof $scope.selectedGenome == "undefined" || typeof $scope.selectedAllele == "undefined" || typeof $scope.selectedPosition == "undefined") return;
+
+      //save the query in the QueryService
+      var selectedBeacons = [];
+      for (var i = $scope.beacons.length - 1; i >= 0; i--) {
+        if($scope.beacons[i].checked) selectedBeacons.push($scope.beacons[i]);
+      };
+      QueryService.setQuery({beacons: selectedBeacons, genome: $scope.selectedGenome, allele: $scope.selectedAllele, position: $scope.selectedPosition, chromosome: $scope.selectedChromosome});
+      $location.path('/results');
     }
 
     $scope.$watch('beacons', function(newVal, oldVal) {

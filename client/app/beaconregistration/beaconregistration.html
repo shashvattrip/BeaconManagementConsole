@@ -2,8 +2,28 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <p class="lead">{{'WHAT_BEACONS_DO_YOU_WANT_TO_QUERY' | translate}}</p>
+    <p class="lead">{{'BEACON_REGISTRATION' | translate}}</p>
     
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="ref" class="control-label col-xs-3">Base Url</label>
+            <div class="col-md-6 col-md-offset-1">
+                <input required type="text" ng-model="selectedPosition" class="form-control" id="" placeholder="Enter Base Url">
+            </div>
+        </div>
+       	<div class="form-group">
+            <label for="ref" class="control-label col-xs-3">Relative Url for getting Chromosome</label>
+            <div class="col-md-6 col-md-offset-1">
+                <input required type="text" ng-model="selectedPosition" class="form-control" id="" placeholder="Enter Relative Url">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ref" class="control-label col-xs-3">Relative Url for getting Chromosome</label>
+            <div class="col-md-6 col-md-offset-1">
+                <button class="form-control btn btn-success">Save</button>
+            </div>
+        </div>
+      </form>
   </div>
 </header>
 <footer class="footer">

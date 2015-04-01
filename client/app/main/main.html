@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="position" class="control-label col-xs-3">Position</label>
             <div class="col-md-6 col-md-offset-1">
-                <input type="text" class="form-control" id="" placeholder="Enter Position">
+                <input required type="text" ng-model="selectedPosition" class="form-control" id="" placeholder="Enter Position">
                 <small style="color:rgb(255,255,255)">0-based coordinate</small>
             </div>
         </div>
@@ -55,6 +55,11 @@
             <label for="alt" class="control-label col-xs-3">Allele</label>
             <div class="col-md-6 col-md-offset-1">
                 <select class="form-control" ng-model="selectedAllele" ng-options="allele.value for allele in alleles"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-6">
+                <button class="form-control btn btn-success" ng-click="redirectTo()">Go</button>
             </div>
         </div>
       </form>
