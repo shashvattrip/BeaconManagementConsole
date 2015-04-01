@@ -21,6 +21,11 @@ angular.module('bobApp')
       'title': 'NAVBAR_BEACON_STATISTICS', 
       'link': '/beaconstats',
       'requireAuth': 'false'
+    }, 
+    {
+      'title': 'NAVBAR_BEACON_REGISTRATION', 
+      'link': '/beaconregistration',
+      'requireAuth': 'false'
     }];
 
     $scope.isCollapsed = true;

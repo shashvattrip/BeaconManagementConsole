@@ -1,47 +1,20 @@
 'use strict';
 
 angular.module('bobApp')
-  .controller('MainCtrl', function ($scope, $http, $timeout) {
+  .controller('MainCtrl', function ($scope, $http, $timeout, DataService) {
     $scope.awesomeThings = [];
     $scope.showProgressBar = false;
     $scope.showResults = false;
     $scope.max = 100;
-    $scope.beacons = [ {
-      "name":"AMP", 
-      "checked":false
-      },
-      {
-      "name":"Beacon4", 
-      "checked":false
-      },
-      {
-      "name":"UCSC", 
-      "checked":false
-      },
-      {
-      "name":"NCBI", 
-      "checked":false
-      }];
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
-
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
-
+    $scope.beacons = DataService.getBeacons();
+    $scope.genomes = DataService.getGenomes();
+    $scope.chromosomes = DataService.getChromosomes();
+    $scope.alleles = DataService.getAlleles();
+    console.log($scope.alleles);
 
     $scope.alerts = [
     // { type: 'danger', msg: 'Please select a beacon to query' }
-  ];
+    ];
 
     $scope.checkErrors = function() {
       //check for errors

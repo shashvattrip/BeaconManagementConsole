@@ -4,51 +4,64 @@
   <div class="container">
     <p class="lead">{{'WHAT_BEACONS_DO_YOU_WANT_TO_QUERY' | translate}}</p>
     <!-- <button ng-click="test()">Test button</button> -->
-    <div class="row" ng-repeat="beacon in beacons">
-      <div class="col-md-3 col-md-offset-3">
-        <label>{{beacon.name}}</label>
-      </div>
-      <div class="col-md-1">
-        <label class="btn btn-success" ng-model="beacon.checked" btn-checkbox>{{modelLabels(beacon.checked)}}</label>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div style="overflow:auto;height:200px;">
+          <table class="table" style="height:300px;">
+            <thead>
+              <tr>
+                <th>Beacon</th>
+                <th class="">Status</th>
+              </tr>
+            </thead>
+            <tbody class="" style="overflow-y: auto;height: 300px;">
+              <tr ng-repeat="beacon in beacons">
+                <th class="">{{beacon.name}}</th>
+                <th class="">
+                  <label class="btn btn-success" ng-model="beacon.checked" btn-checkbox>{{modelLabels(beacon.checked)}}</label>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <br/>
+    <hr/>
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg | translate}}</alert>
+    <div class="row">
+      <form class="form-horizontal">
+        <div class="form-group">
+            <label for="ref" class="control-label col-xs-3">Genome</label>
+            <div class="col-md-6 col-md-offset-1">
+                <select class="form-control" ng-model="selectedGenome" ng-options="genome.value for genome in genomes">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="position" class="control-label col-xs-3">Position</label>
+            <div class="col-md-6 col-md-offset-1">
+                <input type="text" class="form-control" id="" placeholder="Enter Position">
+                <small style="color:rgb(255,255,255)">0-based coordinate</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="chrom" class="control-label col-xs-3">Chromosome</label>
+            <div class="col-md-6 col-md-offset-1">
+                <select class="form-control" ng-model="selectedChromosome" ng-options="chromosome.value for chromosome in chromosomes"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="alt" class="control-label col-xs-3">Allele</label>
+            <div class="col-md-6 col-md-offset-1">
+                <select class="form-control" ng-model="selectedAllele" ng-options="allele.value for allele in alleles"></select>
+            </div>
+        </div>
+      </form>
+    </div>
+    <br/>
   </div>
 </header>
-<!-- <div class="container" ng-show="showProgressBar">
-  <progressbar animate="true" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
-</div> -->
-<div class="container" ng-show="showResults">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Configs:</h1>
-      <a href="/results"><button type="button" class='btn btn-success btn-lg btn-block' translate='HOME_BTN_GO'></button></a>
-      <br/>
-      <ul class="nav nav-tabs nav-stacked col-md-3 col-lg-4 col-sm-6" ng-repeat="beacon in beacons | filter:{checked: 'true'}">
-        <li><strong>{{beacon.name}}</strong></li>
-        <li>Allele 
-         <input type="text" class="form-control" id="" placeholder="Enter Allele">
-        </li>
-        <li>Chromosome 
-         <input type="text" class="form-control" id="" placeholder="Enter Chromosome">
-        </li>
-        <li>Reference 
-         <input type="text" class="form-control" id="" placeholder="Enter Reference">
-        </li>
-        <li>Position 
-         <input type="text" class="form-control" id="" placeholder="Enter Position">
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <button type="button" class='btn btn-success btn-lg btn-block'>Go!</button>
-    </div>
-  </div> -->
-</div>
-
 <footer class="footer">
   <div class="container">
       <p>shashvattrip-BOB v1.0 |

@@ -27,7 +27,8 @@ angular.module('bobApp', [
       'NAVBAR_LOGIN':'Login',
       'HOME_ERROR_SELECT_BEACON':'Please select a beacon to query',
       'HOME_BTN_GO':'Go!',
-      'HOME_ENTER_BEACON_CONFIG':'Please enter configs for the following beacons'
+      'HOME_ENTER_BEACON_CONFIG':'Please enter configs for the following beacons', 
+      'NAVBAR_BEACON_REGISTRATION':"Beacon Registration"
 
     })
     .translations('de', {
